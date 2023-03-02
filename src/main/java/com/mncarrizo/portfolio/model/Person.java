@@ -20,15 +20,15 @@ import lombok.Setter;
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     
     @NotNull
     @Size(min = 1, max = 50, message = "No cumple con la longitud")
-    private String nombre;
+    private String name;
     
     @NotNull
     @Size(min = 1, max = 50, message = "No cumple con la longitud")
-    private String apellido;
+    private String lastname;
     
     @Size(min = 1, max = 50, message = "No cumple con la longitud")
     private String img;
