@@ -2,7 +2,7 @@ package com.mncarrizo.portfolio.security;
 
 import com.mncarrizo.portfolio.security.jwt.jwtEntryPoint;
 import com.mncarrizo.portfolio.security.jwt.jwtTokenFilter;
-//import com.mncarrizo.portfolio.security.service.UserDetailsImp;
+import com.mncarrizo.portfolio.security.service.UserDetailsImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,16 +27,16 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableMethodSecurity
 public class MainSecurity {
     
-    /*
+    
     @Autowired
     UserDetailsImp userDetailsImp;
-    */
+    
 
     @Autowired
     jwtEntryPoint entryPoint;
 
     @Bean
-    public jwtTokenFilter jwtTokenFilter() {
+    public jwtTokenFilter tokenFilter() {
         return new jwtTokenFilter();
     }
 
@@ -60,7 +60,7 @@ public class MainSecurity {
                 .requestMatchers("/**").permitAll()
                 .anyRequest().authenticated();
 
-        http.addFilterBefore(jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(tokenFilter(), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }

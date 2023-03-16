@@ -14,14 +14,14 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 public class RootUser implements UserDetails{
     private String name;
-    private String userName;
+    private String username;
     private String email;
     private String password;
     private Collection<? extends GrantedAuthority> authorities;
 
-    public RootUser(String name, String userName, String email, String password, Collection<? extends GrantedAuthority> authorities) {
+    public RootUser(String name, String username, String email, String password, Collection<? extends GrantedAuthority> authorities) {
         this.name = name;
-        this.userName = userName;
+        this.username = username;
         this.email = email;
         this.password = password;
         this.authorities = authorities;
@@ -34,7 +34,7 @@ public class RootUser implements UserDetails{
         
         return new RootUser(
                 user.getName(), 
-                user.getUserName(), 
+                user.getUsername(), 
                 user.getEmail(),
                 user.getPassword(),
                 authorities);
@@ -60,7 +60,7 @@ public class RootUser implements UserDetails{
 
     @Override
     public String getUsername() {
-        return userName;
+        return username;
     }
 
     @Override

@@ -20,7 +20,7 @@ public class UserDetailsImp implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userService.getByUserName(username).get();
+        User user = userService.getByUsername(username).get();
         return RootUser.build(user);
     }
 }

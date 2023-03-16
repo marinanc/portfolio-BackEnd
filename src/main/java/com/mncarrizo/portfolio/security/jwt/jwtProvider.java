@@ -23,9 +23,9 @@ import org.springframework.stereotype.Component;
 public class jwtProvider {
     private Logger logger = LoggerFactory.getLogger(jwtProvider.class);
     
-    @Value("${jwt.secret")
+    @Value("${jwt.secret}")
     private String secret;
-    @Value("${jwt.expiration")
+    @Value("${jwt.expiration}")
     private int expiration;
     
     public String generateToken(Authentication authentication){
@@ -37,7 +37,7 @@ public class jwtProvider {
                 .compact();
     }
     
-    public String getUserNameFromToken(String token){
+    public String getUsernameFromToken(String token){
         return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody().getSubject();
     }
     
