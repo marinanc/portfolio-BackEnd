@@ -4,6 +4,7 @@ import com.mncarrizo.portfolio.model.Person;
 import com.mncarrizo.portfolio.service.IPersonService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,18 +30,21 @@ public class PersonController {
         return personService.getPersons();
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/persons/create")
     public String createPerson(@RequestBody Person person){
         personService.savePerson(person);
         return "La persona fue creada correctamente";
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/persons/delete/{id}")
     public String deletePerson(@PathVariable Long id){
         personService.deletePerson(id);
         return "La persona fue eliminada correctamente";
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/persons/edit/{id}")
     public Person editPerson(@PathVariable Long id,
                              @RequestParam("name") String newName,
