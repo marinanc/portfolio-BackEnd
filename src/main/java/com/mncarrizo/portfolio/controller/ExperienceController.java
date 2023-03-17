@@ -58,7 +58,7 @@ public class ExperienceController {
         if(experienceService.existsByName(
                 dtoExp.getName()) && 
                 experienceService.getByName(dtoExp.getName()).get().getId() != id)
-            return new ResponseEntity(new Message("Esa experiencia ya existe"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new Message("Esa nombre ya existe"), HttpStatus.BAD_REQUEST);
         
         if(StringUtils.isBlank(dtoExp.getName()))
             return new ResponseEntity(new Message("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
@@ -85,7 +85,7 @@ public class ExperienceController {
     @GetMapping("/detail/{id}")
     public ResponseEntity<Experience> getById(@PathVariable("id") int id){
         if(!experienceService.existsById(id))
-            return new ResponseEntity(new Message("no existe"), HttpStatus.NOT_FOUND);
+            return new ResponseEntity(new Message("El ID no existe"), HttpStatus.NOT_FOUND);
         Experience experiencie = experienceService.getOne(id).get();
         return new ResponseEntity(experiencie, HttpStatus.OK);
     }
