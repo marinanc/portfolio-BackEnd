@@ -11,20 +11,20 @@ import jakarta.persistence.Id;
  */
 
 @Entity
-public class Experience {
+public class Skill {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    private String description;
+    private int percentage;
 
-    public Experience() {
+    public Skill() {
     }
 
-    public Experience(String name, String description) {
+    public Skill(String name, int percentage) {
         this.name = name;
-        this.description = description;
+        this.percentage = percentage;
     }
 
     public int getId() {
@@ -43,12 +43,12 @@ public class Experience {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
+    public int getPercentage() {
+        return percentage;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setPercentage(int percentage) {
+        this.percentage = percentage;
     }
-      
+    
 }
