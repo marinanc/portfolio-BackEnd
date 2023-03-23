@@ -3,6 +3,7 @@ package com.mncarrizo.portfolio.service;
 
 import com.mncarrizo.portfolio.model.Person;
 import com.mncarrizo.portfolio.repository.IPersonRepository;
+import jakarta.transaction.Transactional;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
  */
 
 @Service
+@Transactional
 public class PersonService implements IPersonService {
 
     @Autowired IPersonRepository personRepository;

@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.mncarrizo.portfolio.PortfolioApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 14.867 s - in com.mncarrizo.portfolio.PortfolioApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 19.6 s - in com.mncarrizo.portfolio.PortfolioApplicationTests
