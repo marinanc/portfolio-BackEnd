@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -35,7 +34,8 @@ public class PersonController {
         List<Person> list = personService.listPersons();
         return new ResponseEntity(list, HttpStatus.OK);
     }
-    
+/*    
+    @PostMapping("/create")
     public ResponseEntity<?> create(@RequestBody dtoPerson dtoPe){
         if(StringUtils.isBlank(dtoPe.getName()))
             return new ResponseEntity(new Message("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
@@ -49,6 +49,7 @@ public class PersonController {
         
         return new ResponseEntity(new Message("Persona añadida exitosamente"), HttpStatus.OK);
     }
+*/
     
     @PutMapping("/update/{id}")
     public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody dtoPerson dtoPe){
@@ -72,6 +73,7 @@ public class PersonController {
         return new ResponseEntity(new Message("Persona actualizada exitosamente"), HttpStatus.OK);
     }
     
+/*
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") int id){
         if(!personService.existsById(id))
@@ -81,6 +83,7 @@ public class PersonController {
         
         return new ResponseEntity(new Message("Persona eliiminada exitosamente"), HttpStatus.OK);
     }
+*/
     
     @GetMapping("/detail/{id}")
     public ResponseEntity<Person> getById(@PathVariable("id") int id){
