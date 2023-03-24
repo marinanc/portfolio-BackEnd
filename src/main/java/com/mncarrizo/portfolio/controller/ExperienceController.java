@@ -41,10 +41,20 @@ public class ExperienceController {
     public ResponseEntity<?> create(@RequestBody dtoExperience dtoExp){
         if(StringUtils.isBlank(dtoExp.getName()))
             return new ResponseEntity(new Message("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
+        if(StringUtils.isBlank(dtoExp.getDateFrom()))
+            return new ResponseEntity(new Message("La fecha de inicio es obligatoria"), HttpStatus.BAD_REQUEST);
+        if(StringUtils.isBlank(dtoExp.getDescription()))
+            return new ResponseEntity(new Message("La descripcion es obligatoria"), HttpStatus.BAD_REQUEST);
+        
         if(experienceService.existsByName(dtoExp.getName()))
             return new ResponseEntity(new Message("Esa experiencia ya existe"), HttpStatus.BAD_REQUEST);
         
-        Experience experience = new Experience(dtoExp.getName(), dtoExp.getDescription());
+        Experience experience = new Experience(
+                dtoExp.getName(), 
+                dtoExp.getDateFrom(),
+                dtoExp.getDateTo(),
+                dtoExp.getDescription()
+            );
         experienceService.save(experience);
         
         return new ResponseEntity(new Message("Experiencia agregada exitosamente"), HttpStatus.OK);
@@ -62,9 +72,15 @@ public class ExperienceController {
         
         if(StringUtils.isBlank(dtoExp.getName()))
             return new ResponseEntity(new Message("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
+        if(StringUtils.isBlank(dtoExp.getDateFrom()))
+            return new ResponseEntity(new Message("La fecha de inicio es obligatoria"), HttpStatus.BAD_REQUEST);
+        if(StringUtils.isBlank(dtoExp.getDescription()))
+            return new ResponseEntity(new Message("La descripcion es obligatoria"), HttpStatus.BAD_REQUEST);
         
         Experience experience = experienceService.getOne(id).get();
         experience.setName(dtoExp.getName());
+        experience.setDateFrom(dtoExp.getDateFrom());
+        experience.setDateTo(dtoExp.getDateTo());
         experience.setDescription(dtoExp.getDescription());
         
         experienceService.save(experience);

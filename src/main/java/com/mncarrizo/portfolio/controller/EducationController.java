@@ -41,11 +41,20 @@ public class EducationController {
     public ResponseEntity<?> create(@RequestBody dtoEducation dtoEdu){
         if(StringUtils.isBlank(dtoEdu.getTitle()))
             return new ResponseEntity(new Message("El titulo es obligatorio"), HttpStatus.BAD_REQUEST);
+        if(StringUtils.isBlank(dtoEdu.getDateFrom()))
+            return new ResponseEntity(new Message("La fecha de inicio es obligatoria"), HttpStatus.BAD_REQUEST);
+        if(StringUtils.isBlank(dtoEdu.getDescription()))
+            return new ResponseEntity(new Message("La descripcion es obligatoria"), HttpStatus.BAD_REQUEST);
         
         if(educationService.existsByTitle(dtoEdu.getTitle()))
             return new ResponseEntity(new Message("El titulo ya existe"), HttpStatus.BAD_REQUEST);
         
-        Education education = new Education(dtoEdu.getTitle(), dtoEdu.getDescription());
+        Education education = new Education(
+                dtoEdu.getTitle(), 
+                dtoEdu.getDateFrom(),
+                dtoEdu.getDateTo(),
+                dtoEdu.getDescription()
+                );
         educationService.save(education);
         
         return new ResponseEntity(new Message("Educacion agregada exitosamente"), HttpStatus.OK);
@@ -63,9 +72,15 @@ public class EducationController {
         
         if(StringUtils.isBlank(dtoEdu.getTitle()))
             return new ResponseEntity(new Message("El titulo es obligatorio"), HttpStatus.BAD_REQUEST);
+        if(StringUtils.isBlank(dtoEdu.getDateFrom()))
+            return new ResponseEntity(new Message("La fecha de inicio es obligatoria"), HttpStatus.BAD_REQUEST);
+        if(StringUtils.isBlank(dtoEdu.getDescription()))
+            return new ResponseEntity(new Message("La descripcion es obligatoria"), HttpStatus.BAD_REQUEST);
         
         Education education = educationService.getOne(id).get();
         education.setTitle(dtoEdu.getTitle());
+        education.setDateFrom(dtoEdu.getDateFrom());
+        education.setDateTo(dtoEdu.getDateTo());
         education.setDescription(dtoEdu.getDescription());
         
         educationService.save(education);

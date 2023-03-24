@@ -17,13 +17,17 @@ public class Experience {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
+    private String dateFrom;
+    private String dateTo;
     private String description;
 
     public Experience() {
     }
 
-    public Experience(String name, String description) {
+    public Experience(String name, String dateFrom, String dateTo, String description) {
         this.name = name;
+        this.dateFrom = dateFrom;
+        this.dateTo = dateTo;
         this.description = description;
     }
 
@@ -50,5 +54,21 @@ public class Experience {
     public void setDescription(String description) {
         this.description = description;
     }
-      
+
+    public String getDateFrom() {
+        return dateFrom;
+    }
+
+    public void setDateFrom(String dateFrom) {
+        this.dateFrom = dateFrom;
+    }
+
+    public String getDateTo() {
+        return dateTo;
+    }
+
+    public void setDateTo(String dateTo) {
+        this.dateTo = dateTo;
+    }
+    
 }
