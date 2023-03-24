@@ -4,6 +4,7 @@ C:\Users\Marina\Desktop\Marina\Proyectos\portfolio-BackEnd\src\main\java\com\mnc
 C:\Users\Marina\Desktop\Marina\Proyectos\portfolio-BackEnd\src\main\java\com\mncarrizo\portfolio\security\service\UserService.java
 C:\Users\Marina\Desktop\Marina\Proyectos\portfolio-BackEnd\src\main\java\com\mncarrizo\portfolio\repository\ISkillRepository.java
 C:\Users\Marina\Desktop\Marina\Proyectos\portfolio-BackEnd\src\main\java\com\mncarrizo\portfolio\dto\dtoEducation.java
+C:\Users\Marina\Desktop\Marina\Proyectos\portfolio-BackEnd\src\main\java\com\mncarrizo\portfolio\dto\dtoPerson.java
 C:\Users\Marina\Desktop\Marina\Proyectos\portfolio-BackEnd\src\main\java\com\mncarrizo\portfolio\security\dto\LoginUser.java
 C:\Users\Marina\Desktop\Marina\Proyectos\portfolio-BackEnd\src\main\java\com\mncarrizo\portfolio\security\jwt\jwtTokenFilter.java
 C:\Users\Marina\Desktop\Marina\Proyectos\portfolio-BackEnd\src\main\java\com\mncarrizo\portfolio\security\dto\NewUser.java
@@ -24,7 +25,6 @@ C:\Users\Marina\Desktop\Marina\Proyectos\portfolio-BackEnd\src\main\java\com\mnc
 C:\Users\Marina\Desktop\Marina\Proyectos\portfolio-BackEnd\src\main\java\com\mncarrizo\portfolio\model\Experience.java
 C:\Users\Marina\Desktop\Marina\Proyectos\portfolio-BackEnd\src\main\java\com\mncarrizo\portfolio\model\Person.java
 C:\Users\Marina\Desktop\Marina\Proyectos\portfolio-BackEnd\src\main\java\com\mncarrizo\portfolio\security\service\RoleService.java
-C:\Users\Marina\Desktop\Marina\Proyectos\portfolio-BackEnd\src\main\java\com\mncarrizo\portfolio\service\IPersonService.java
 C:\Users\Marina\Desktop\Marina\Proyectos\portfolio-BackEnd\src\main\java\com\mncarrizo\portfolio\security\MainSecurity.java
 C:\Users\Marina\Desktop\Marina\Proyectos\portfolio-BackEnd\src\main\java\com\mncarrizo\portfolio\model\Skill.java
 C:\Users\Marina\Desktop\Marina\Proyectos\portfolio-BackEnd\src\main\java\com\mncarrizo\portfolio\service\ProjectService.java

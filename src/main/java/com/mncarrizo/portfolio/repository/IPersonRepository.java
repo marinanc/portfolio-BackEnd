@@ -1,10 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
 package com.mncarrizo.portfolio.repository;
 
 import com.mncarrizo.portfolio.model.Person;
+import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -14,6 +11,9 @@ import org.springframework.stereotype.Repository;
  */
 
 @Repository
-public interface IPersonRepository extends JpaRepository<Person,Long>{
-    
+public interface IPersonRepository extends JpaRepository<Person,Integer>{
+    public Optional<Person> findByName(String name);
+    public Optional<Person> findByLastname(String lastname);
+    public boolean existsByName(String name);
+    public boolean existsByLastname(String lastname);
 }

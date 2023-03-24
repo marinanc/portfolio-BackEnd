@@ -11,6 +11,7 @@ com\mncarrizo\portfolio\security\jwt\jwtProvider.class
 com\mncarrizo\portfolio\security\entity\RootUser.class
 com\mncarrizo\portfolio\repository\ISkillRepository.class
 com\mncarrizo\portfolio\service\SkillService.class
+com\mncarrizo\portfolio\dto\dtoPerson.class
 com\mncarrizo\portfolio\repository\IProjectRepository.class
 com\mncarrizo\portfolio\repository\IPersonRepository.class
 com\mncarrizo\portfolio\security\dto\jwtDTO.class
@@ -22,7 +23,6 @@ com\mncarrizo\portfolio\service\ExperienceService.class
 com\mncarrizo\portfolio\repository\IExperienceRepository.class
 com\mncarrizo\portfolio\security\repository\IUserRepository.class
 com\mncarrizo\portfolio\security\entity\Role.class
-com\mncarrizo\portfolio\service\IPersonService.class
 com\mncarrizo\portfolio\service\EducationService.class
 com\mncarrizo\portfolio\controller\ProjectController.class
 com\mncarrizo\portfolio\repository\IEducationRepository.class

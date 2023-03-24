@@ -1,18 +1,21 @@
 package com.mncarrizo.portfolio.controller;
 
+import com.mncarrizo.portfolio.dto.dtoPerson;
 import com.mncarrizo.portfolio.model.Person;
-import com.mncarrizo.portfolio.service.IPersonService;
+import com.mncarrizo.portfolio.security.controller.Message;
+import com.mncarrizo.portfolio.service.PersonService;
 import java.util.List;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -21,48 +24,71 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
+@RequestMapping("/person")
 @CrossOrigin(origins = {"https://frontend-portfolio-mnc.web.app", "http://localhost:4200"})
 public class PersonController {
-    @Autowired IPersonService personService;
+    @Autowired
+    PersonService personService;
     
-    @GetMapping("/persons/get")
-    public List<Person> getPersons(){
-        return personService.getPersons();
+    @GetMapping("/list")
+    public ResponseEntity<List<Person>> listPersons(){
+        List<Person> list = personService.listPersons();
+        return new ResponseEntity(list, HttpStatus.OK);
     }
     
-    @PreAuthorize("hasRole('ADMIN')")
-    @PostMapping("/persons/create")
-    public String createPerson(@RequestBody Person person){
-        personService.savePerson(person);
-        return "La persona fue creada correctamente";
-    }
-    
-    @PreAuthorize("hasRole('ADMIN')")
-    @DeleteMapping("/persons/delete/{id}")
-    public String deletePerson(@PathVariable Long id){
-        personService.deletePerson(id);
-        return "La persona fue eliminada correctamente";
-    }
-    
-    @PreAuthorize("hasRole('ADMIN')")
-    @PutMapping("/persons/edit/{id}")
-    public Person editPerson(@PathVariable Long id,
-                             @RequestParam("name") String newName,
-                             @RequestParam("lastname") String newLastName,
-                             @RequestParam("img") String newImg){
+    public ResponseEntity<?> create(@RequestBody dtoPerson dtoPe){
+        if(StringUtils.isBlank(dtoPe.getName()))
+            return new ResponseEntity(new Message("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
+        if(StringUtils.isBlank(dtoPe.getLastname()))
+            return new ResponseEntity(new Message("El apellido es obligatorio"), HttpStatus.BAD_REQUEST);
+        if(StringUtils.isBlank(dtoPe.getDescription()))
+            return new ResponseEntity(new Message("La descripción es obligatoria"), HttpStatus.BAD_REQUEST);
         
-        Person person = personService.findPerson(id);
-        person.setName(newName);
-        person.setLastname(newLastName);
-        person.setImg(newImg);
+        Person person = new Person(dtoPe.getName(), dtoPe.getLastname(), dtoPe.getDescription(), dtoPe.getImg());
+        personService.save(person);
         
-        personService.savePerson(person);
-        
-        return person;
+        return new ResponseEntity(new Message("Persona añadida exitosamente"), HttpStatus.OK);
     }
     
-    @GetMapping("/persons/get/profile")
-    public Person findPerson(){
-        return personService.findPerson((long)1);
+    @PutMapping("/update/{id}")
+    public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody dtoPerson dtoPe){
+        if(!personService.existsById(id))
+            return new ResponseEntity(new Message("ID inexistente"), HttpStatus.NOT_FOUND);
+        if(StringUtils.isBlank(dtoPe.getName()))
+            return new ResponseEntity(new Message("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
+        if(StringUtils.isBlank(dtoPe.getLastname()))
+            return new ResponseEntity(new Message("El apellido es obligatorio"), HttpStatus.BAD_REQUEST);
+        if(StringUtils.isBlank(dtoPe.getDescription()))
+            return new ResponseEntity(new Message("La descripción es obligatoria"), HttpStatus.BAD_REQUEST);
+        
+        Person person = personService.getOne(id).get();
+        person.setName(dtoPe.getName());
+        person.setLastname(dtoPe.getLastname());
+        person.setDescription(dtoPe.getDescription());
+        person.setImg(dtoPe.getImg());
+        
+        personService.save(person);
+        
+        return new ResponseEntity(new Message("Persona actualizada exitosamente"), HttpStatus.OK);
+    }
+    
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> delete(@PathVariable("id") int id){
+        if(!personService.existsById(id))
+            return new ResponseEntity(new Message("ID inexistente"), HttpStatus.NOT_FOUND);
+        
+        personService.delete(id);
+        
+        return new ResponseEntity(new Message("Persona eliiminada exitosamente"), HttpStatus.OK);
+    }
+    
+    @GetMapping("/detail/{id}")
+    public ResponseEntity<Person> getById(@PathVariable("id") int id){
+        if(!personService.existsById(id))
+            return new ResponseEntity(new Message("ID inexistente"), HttpStatus.NOT_FOUND);
+        
+        Person person = personService.getOne(id).get();
+        
+        return new ResponseEntity(person, HttpStatus.OK);
     }
 }

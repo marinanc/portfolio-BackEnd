@@ -5,6 +5,7 @@ import com.mncarrizo.portfolio.model.Person;
 import com.mncarrizo.portfolio.repository.IPersonRepository;
 import jakarta.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,30 +16,45 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Transactional
-public class PersonService implements IPersonService {
+public class PersonService {
 
-    @Autowired IPersonRepository personRepository;
+    @Autowired 
+    IPersonRepository personRepository;
     
-    @Override
-    public List<Person> getPersons() {
-        List<Person> persons = personRepository.findAll();
-        return persons;
+    public List<Person> listPersons() {
+        return personRepository.findAll();
     }
-
-    @Override
-    public void savePerson(Person person) {
-        personRepository.save(person);
+    
+    public Optional<Person> getOne(int id){
+        return personRepository.findById(id);
     }
-
-    @Override
-    public void deletePerson(Long id) {
+    
+    public Optional<Person> getByName(String name){
+        return personRepository.findByName(name);
+    }
+    
+    public Optional<Person> getByLastname(String lastname){
+        return personRepository.findByLastname(lastname);
+    }
+    
+    public void save(Person p){
+        personRepository.save(p);
+    }
+    
+    public void delete(int id){
         personRepository.deleteById(id);
     }
-
-    @Override
-    public Person findPerson(Long id) {
-        Person person = personRepository.findById(id).orElse(null);
-        return person;
+    
+    public boolean existsById(int id){
+        return personRepository.existsById(id);
+    }
+    
+    public boolean existsByName(String name){
+        return personRepository.existsByName(name);
+    }
+    
+    public boolean existsByLastname(String lastname){
+        return personRepository.existsByName(lastname);
     }
     
 }
