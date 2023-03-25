@@ -53,7 +53,8 @@ public class EducationController {
                 dtoEdu.getTitle(), 
                 dtoEdu.getDateFrom(),
                 dtoEdu.getDateTo(),
-                dtoEdu.getDescription()
+                dtoEdu.getDescription(),
+                dtoEdu.getImg()
                 );
         educationService.save(education);
         
@@ -82,6 +83,7 @@ public class EducationController {
         education.setDateFrom(dtoEdu.getDateFrom());
         education.setDateTo(dtoEdu.getDateTo());
         education.setDescription(dtoEdu.getDescription());
+        education.setImg(dtoEdu.getImg());
         
         educationService.save(education);
         
