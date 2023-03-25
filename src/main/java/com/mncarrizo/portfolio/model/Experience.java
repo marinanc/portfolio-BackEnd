@@ -20,15 +20,17 @@ public class Experience {
     private String dateFrom;
     private String dateTo;
     private String description;
+    private String img;
 
     public Experience() {
     }
 
-    public Experience(String name, String dateFrom, String dateTo, String description) {
+    public Experience(String name, String dateFrom, String dateTo, String description, String img) {
         this.name = name;
         this.dateFrom = dateFrom;
         this.dateTo = dateTo;
         this.description = description;
+        this.img = img;
     }
 
     public int getId() {
@@ -69,6 +71,14 @@ public class Experience {
 
     public void setDateTo(String dateTo) {
         this.dateTo = dateTo;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
     
 }

@@ -53,7 +53,8 @@ public class ExperienceController {
                 dtoExp.getName(), 
                 dtoExp.getDateFrom(),
                 dtoExp.getDateTo(),
-                dtoExp.getDescription()
+                dtoExp.getDescription(),
+                dtoExp.getImg()
             );
         experienceService.save(experience);
         
